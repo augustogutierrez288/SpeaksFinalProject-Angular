@@ -1,2 +1,2 @@
 <p>Lista de estudiantes registrados</p>
-<app-students-table [students]="students"/>
+<app-students-table [students]="students" (onEdit)="onEdit.emit($event)" (onDelete)="onDelete.emit($event)"/>

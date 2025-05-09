@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { IStudent } from '../../models';
 
 @Component({
@@ -10,4 +10,10 @@ import { IStudent } from '../../models';
 export class StudentsListComponent {
  @Input()
  students: IStudent[] = [];
+
+ @Output()
+  onEdit = new EventEmitter<IStudent>();
+  
+  @Output()
+  onDelete = new EventEmitter<IStudent>();
 }

@@ -2,9 +2,9 @@ export interface IStudent {
     legajo: number;
     firstName: string;
     lastName: string;
-    dni: number;
+    dni: string;
     email: string;
-    phone: number;
+    phone: string;
     address: string;
     city: string;
 }

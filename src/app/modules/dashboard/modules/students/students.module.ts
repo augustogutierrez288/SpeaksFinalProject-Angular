@@ -7,7 +7,6 @@ import { StudentsListComponent } from './components/students-list/students-list.
 import { StudentsTableComponent } from './components/students-table/students-table.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
-import { StudentsFormComponent } from './components/students-form/students-form.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
@@ -19,7 +18,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     StudentsComponent,
     StudentsListComponent,
     StudentsTableComponent,
-    StudentsFormComponent
   ],
   imports: [
     CommonModule,
