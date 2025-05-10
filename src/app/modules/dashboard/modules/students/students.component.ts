@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { IStudent } from './models';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { StudentService } from './student.service';
+import { first, Subscription, take } from 'rxjs';
 
 @Component({
   selector: 'app-students',
@@ -8,10 +10,11 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   templateUrl: './students.component.html',
   styleUrl: './students.component.scss'
 })
-export class StudentsComponent {
+export class StudentsComponent implements OnDestroy {
 
   isEditing: boolean = false;
   studentForm: FormGroup;
+  isLoading: boolean = false;
 
   students: IStudent[] = [
     { legajo: 1, firstName: 'Juan', lastName: 'Pérez', dni: '12345678', email: 'juan.perez@example.com', phone: '3811234567', address: 'Calle Falsa 123', city: 'Tucumán' },
@@ -26,7 +29,13 @@ export class StudentsComponent {
     { legajo: 10, firstName: 'Camila', lastName: 'Ruiz', dni: '12345679', email: 'camila.ruiz@example.com', phone: '3811234568', address: 'Calle Mendoza 707', city: 'Tucumán' }
   ];
 
-  constructor(private fb: FormBuilder) {
+  studentsSubscription: Subscription | null = null;
+
+  constructor(
+    private fb: FormBuilder,
+    private studentService: StudentService
+  ) {
+
    this.studentForm = this.fb.group({
     legajo: [''],
     firstName: [''],
@@ -36,7 +45,42 @@ export class StudentsComponent {
     phone: [''],
     address: [''],
     city: ['']
-   })
+   });
+
+   this.loadStudentsObservable();
+  }
+
+  ngOnDestroy(): void {
+    console.log('Destruyendo el componente');
+    this.studentsSubscription?.unsubscribe();
+  }
+
+  loadStudentsObservable(): void {
+    this.isLoading = true;
+    this.studentsSubscription = this.studentService.getStudent$().pipe(take(1)) // con esta funcion me evito destruir el componente
+      .subscribe({
+        next: (students: IStudent[]) => {
+          console.table(students);
+        },
+        error: (error) => {
+          console.error(error.message);
+        },
+        complete: () => {
+          this.isLoading = false;
+        } 
+      })
+  }
+
+  loadStudents():void{
+    this.isLoading = true;
+    this.studentService.getStudents()
+      .then((students : IStudent[]) => {console.table(students)})
+      .catch((error) => {
+        console.error(error.message);
+      })
+      .finally(() => {
+        this.isLoading = false;
+      })
   }
 
   onSubmit(): void {

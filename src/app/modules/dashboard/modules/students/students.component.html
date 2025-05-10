@@ -1,4 +1,9 @@
-<section class="container-fluid">
+<ng-container *ngIf="isLoading; else notLoading">
+<p>Cargando estudiantes. Espere por favor...</p>
+</ng-container>
+
+<ng-template #notLoading>
+    <section class="container-fluid">
     <section class="row">
         <p class="col-12 m-0">Cargar nuevos alumnos a la base de datos</p>
         <form [formGroup]="studentForm" (ngSubmit)="onSubmit()" class="col-12 d-flex flex-column align-items-start gap-1" action="">
@@ -59,3 +64,4 @@
   (onEdit)="onEdit($event)" 
   (onDelete)="onDelete($event)"
 ></app-students-list>
+</ng-template>
