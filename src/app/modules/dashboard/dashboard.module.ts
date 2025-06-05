@@ -10,12 +10,13 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { NavListComponent } from './components/nav-list/nav-list.component';
 import { StudentsModule } from './modules/students/students.module';
+import { CoursesModule } from './modules/courses/courses.module';
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    NavListComponent
+    NavListComponent,
   ],
   imports: [
     CommonModule,
@@ -24,7 +25,8 @@ import { StudentsModule } from './modules/students/students.module';
     MatSidenavModule,
     MatButtonModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    CoursesModule
   ],
   exports: [
     DashboardComponent
