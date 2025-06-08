@@ -17,8 +17,7 @@ export class StudentsTableComponent {
     'phone',
     'address',
     'city',
-    'edit',
-    'delete'
+    'actions'
   ];
 
   @Input()

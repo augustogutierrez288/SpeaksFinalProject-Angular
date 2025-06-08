@@ -11,6 +11,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
+import { StudentDetailComponent } from './pages/student-detail/student-detail.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     StudentsComponent,
     StudentsListComponent,
     StudentsTableComponent,
+    StudentDetailComponent,
   ],
   imports: [
     CommonModule,

@@ -1,8 +1,8 @@
-<ul>
-    <li><a href="#">Inicio</a></li>
-    <li><a href="#">Estudiantes</a></li>
-    <li><a href="#">Cursos</a></li>
-    <li><a href="#">Carreras</a></li>
-    <li><a href="#">Avanzado</a></li>
-    <li><a href="#">Cerrar sesion</a></li>
-</ul>
+<mat-nav-list arial-label="Lista de navegación">
+    <a mat-list-item routerLink="dashboard">Inicio</a>
+    <a mat-list-item  routerLink="students">Estudiantes</a>
+    <a mat-list-item  routerLink="courses">Cursos</a>
+    <a mat-list-item  href="#">Carreras</a>
+    <a mat-list-item  href="#">Avanzado</a>
+    <a mat-list-item  (click)="logout()">Cerrar sesion</a>
+</mat-nav-list>

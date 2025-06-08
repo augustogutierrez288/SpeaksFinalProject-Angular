@@ -18,6 +18,13 @@ const MY_FAKE_STUDENTS: IStudent[] = [
 @Injectable({providedIn: 'root'})
 export class StudentService{
 
+    getStudentById(legajo: number): Observable<IStudent | undefined>{
+        return of([...MY_FAKE_STUDENTS]).pipe(
+            map((student) => student.find((s) => s.legajo == legajo || undefined))
+        )
+    }
+
+
     getStudentsName(name: string): Observable<string>{
         return of(...MY_FAKE_STUDENTS).pipe(
             filter((s) => s.firstName.length > 5),
