@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { PageNotFoundModule } from './modules/page-not-found/page-not-found.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,9 @@ import { AuthModule } from './modules/auth/auth.module';
     DashboardModule,
     PageNotFoundModule
   ],
-  providers: [],
+  providers: [
+    provideHttpClient(withFetch())
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

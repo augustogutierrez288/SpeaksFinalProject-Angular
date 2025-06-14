@@ -1,5 +1,5 @@
 export interface IStudent {
-    legajo: number;
+    id: string;
     firstName: string;
     lastName: string;
     dni: string;

@@ -1,5 +1,8 @@
+import { AuthService } from './../../../../../../core/services/auth.service';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { IStudent } from '../../models';
+import { Observable } from 'rxjs';
+import { IUser } from '../../../../../../core/models';
 
 @Component({
   selector: 'app-students-table',
@@ -9,7 +12,7 @@ import { IStudent } from '../../models';
 })
 export class StudentsTableComponent {
   displayedColumns: string[] = [
-    'legajo',
+    'id',
     'firstName',
     'lastName',
     'dni',
@@ -28,4 +31,10 @@ export class StudentsTableComponent {
   
   @Output()
   onDelete = new EventEmitter<IStudent>();
+
+  authUser$: Observable<IUser | null>;
+
+  constructor(private AuthService: AuthService){
+    this.authUser$ = this.AuthService.authService$;
+  }
 }

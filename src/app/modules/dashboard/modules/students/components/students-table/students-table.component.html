@@ -1,8 +1,8 @@
 <table mat-table [dataSource]="students" class="mat-elevation-z8">
 
-    <ng-container matColumnDef="legajo">
+    <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef>Legajo</th>
-      <td mat-cell *matCellDef="let element"> {{element.legajo}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
     </ng-container>
   
     <ng-container matColumnDef="firstName">
@@ -48,11 +48,11 @@
                 <mat-icon>visibility</mat-icon>
             </button>
 
-             <button (click)="onEdit.emit(element)" mat-icon-button aria-label="Boton para editar un estudiante">
+             <button [disabled]="(authUser$ | async)?.role != 'admin'" (click)="onEdit.emit(element)" mat-icon-button aria-label="Boton para editar un estudiante">
                 <mat-icon>edit</mat-icon>
             </button>
 
-            <button (click)="onDelete.emit(element)" mat-icon-button aria-label="Boton para eliminar un estudiante">
+            <button [disabled]="(authUser$ | async)?.role != 'admin'" (click)="onDelete.emit(element)" mat-icon-button aria-label="Boton para eliminar un estudiante">
                 <mat-icon>delete</mat-icon>
             </button>
 
